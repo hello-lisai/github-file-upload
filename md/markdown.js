@@ -4,7 +4,8 @@ function exportMarkdown() {
   const content = document.getElementById('contentInput').value;
   const currentDate = new Date();
   //const filename = currentDate.toISOString()+'Markdown' + '.md';
-  const filename = currentDate.toISOString().split('T')[0] + '-' + title + '.md';
+  //const filename = currentDate.toISOString().split('T')[0] + '-' + title + '.md';
+  const filename = currentDate.getHours() + '-' + currentDate.getMinutes() + '-' + currentDate.getSeconds() + '.md';
 
   const formattedTags = tags.map(tag => `  - ${tag.trim()}`).join('\n');
 
