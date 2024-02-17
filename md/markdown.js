@@ -5,7 +5,15 @@ function exportMarkdown() {
   const currentDate = new Date();
   //const filename = currentDate.toISOString()+'Markdown' + '.md';
   //const filename = currentDate.toISOString().split('T')[0] + '-' + title + '.md';
-  const filename = currentDate.getHours() + '-' + currentDate.getMinutes() + '-' + currentDate.getSeconds() + '.md';
+  //const filename = currentDate.getHours() + '-' + currentDate.getMinutes() + '-' + currentDate.getSeconds() + '.md';
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+const day = String(currentDate.getDate()).padStart(2, '0');
+const hours = String(currentDate.getHours()).padStart(2, '0');
+const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+
+const filename = `${year}-${month}${day}-${hours}${minutes}${seconds}.md`;
 
   const formattedTags = tags.map(tag => `  - ${tag.trim()}`).join('\n');
 
