@@ -13,7 +13,7 @@ const hours = String(currentDate.getHours()).padStart(2, '0');
 const minutes = String(currentDate.getMinutes()).padStart(2, '0');
 const seconds = String(currentDate.getSeconds()).padStart(2, '0');
 
-const filename = `${year}-${month}${day}-${hours}${minutes}${seconds}.md`;
+const filename = `${year}-${month}-${day}-${hours}${minutes}${seconds}.md`;
 
   const formattedTags = tags.map(tag => `  - ${tag.trim()}`).join('\n');
 
