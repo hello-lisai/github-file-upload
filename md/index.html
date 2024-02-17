@@ -2,49 +2,54 @@
 <html>
 <head>
   <title>Markdown Editor</title>
-
   <style>
-    body {
-      font-size: 16px;
-      line-height: 1.5;
-      margin: 0;
-      padding: 0;
-    }
-  
-    textarea, input, button {
-      width: 90%;
-      margin: 10px auto;
-      font-size: 16px;
-      padding: 10px;
-      box-sizing: border-box; /* 盒模型设置为边框盒 */
-      display: block;
-    }
-  
-    textarea {
-      min-height: 150px;
-      max-height: 80vh; /* 最大高度为视口高度的80% */
-      resize: vertical;
-      display: block;
-      overflow-y: auto; /* 在达到最大高度时显示垂直滚动条 */
-    }
-  
-    button {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  
-    .warning {
-      color: red;
-      font-size: 14px;
-      margin-top: 5px;
-    }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+textarea, input, button {
+  width: 90%;
+  margin: 10px auto;
+  font-size: 16px;
+  padding: 12px;
+  box-sizing: border-box;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  min-height: 150px;
+  max-height: 80vh;
+  resize: vertical;
+  display: block;
+  overflow-y: auto;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.warning {
+  color: #c0392b;
+  font-size: 14px;
+  margin-top: 5px;
+}
   </style>
+
+  
 </head>
 <body>
   <input id="titleInput" type="text" placeholder="请输入标题">
