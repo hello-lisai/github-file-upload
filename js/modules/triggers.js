@@ -55,6 +55,8 @@ let resourceOperator = {
 $('#myFile').on('input', (e) => resourceOperator.show(targetFromEvent(e).files[0]))
 // 点击图片进行上传时触发
 $("#img_pre_show").on('click', () => resourceOperator.upload())
+// 测试
+$("#up").on('click', () => resourceOperator.upload())
 
 // 【粘贴上传】
 document.addEventListener('paste', function (e) {
