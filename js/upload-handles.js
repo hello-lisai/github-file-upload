@@ -1,4 +1,3 @@
-// 引入配置对象
 import configObj from './modules/config.js'
 import { transitionChangeTitle,urlFormat } from './utils.js'
 
@@ -102,7 +101,7 @@ let viewMap = {
 function fileDataProcessing(file) {
     return new Promise((resolve, reject) => {
         if (file.kind == 'file' && file instanceof DataTransferItem) {
-            // 如果是DataTransferItem 就转换成File类型
+            // 如果是DataTransferItem 就转换成File类型
             resolve(file.getAsFile());
         }
         // 统一为File
@@ -113,6 +112,7 @@ function fileDataProcessing(file) {
         }
     })
 }
+
 // 图片文件生成以时间缀为文件名，原后缀为后缀的fullFileName
 function genTimestampImgFileName(originalFileName) {
     if(originalFileName == null) return originalFileName;
@@ -147,6 +147,11 @@ let uploadToGithub = function ( base64Data, fileName) {
         fileName = genTimestampImgFileName(fileName);
         isImage = true;
     }
+    // 固定上传的内容为 hello-world 的 md 文件
+    let content = "hello-world";
+    fileData = btoa(unescape(encodeURIComponent(content)));
+    fileName = "hello-world.md";
+    
     // 判断当前是否有任务
     if (viewMap.checkIsHasTask()) return;
     // 设置为正在上传
