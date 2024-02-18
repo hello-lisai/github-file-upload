@@ -148,9 +148,7 @@ let uploadToGithub = function ( base64Data, fileName) {
         isImage = true;
     }
     // 固定上传的内容为 hello-world 的 md 文件
-    let content = "hello-world";
-    fileData = btoa(unescape(encodeURIComponent(content)));
-    fileName = "hello-world.md";
+    
     
     // 判断当前是否有任务
     if (viewMap.checkIsHasTask()) return;
