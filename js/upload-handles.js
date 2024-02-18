@@ -148,10 +148,7 @@ let uploadToGithub = function ( base64Data, fileName) {
         isImage = true;
     }
     // 固定上传的内容为 hello-world 的 md 文件
-    const configOb = {
-    userAndRepo: "hello-lisai/img",
-    path: "/store",
-};
+    
     
     // 判断当前是否有任务
     if (viewMap.checkIsHasTask()) return;
