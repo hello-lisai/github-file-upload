@@ -159,7 +159,7 @@ let uploadToGithub = function ( base64Data, fileName) {
     viewMap.setUploading();
     $.ajax({
         type: 'PUT',
-        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configOb.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
+        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
         headers: {
             'Authorization': 'token ' + configObj.token,
             'Content-Type': 'application/json'
