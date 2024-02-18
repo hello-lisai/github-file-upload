@@ -39,6 +39,14 @@ ${content}`;
     downloadMarkdown(markdownContent, filename);
     clearInputs();
   }
+var textToCopy = filename ;
+var textarea = document.createElement("textarea");
+textarea.value = textToCopy;
+document.body.appendChild(textarea);
+textarea.select();
+document.execCommand("copy");
+document.body.removeChild(textarea);
+alert("文件名称已成功复制到剪贴板");  
 }
 
 function getFormattedDate() {
