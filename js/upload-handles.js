@@ -148,7 +148,10 @@ let uploadToGithub = function ( base64Data, fileName) {
         isImage = true;
     }
     // 固定上传的内容为 hello-world 的 md 文件
-    const name = "/images";
+    const configOb = {
+    userAndRepo: "hello-lisai/img",
+    path: "store",
+};
     
     // 判断当前是否有任务
     if (viewMap.checkIsHasTask()) return;
@@ -156,7 +159,7 @@ let uploadToGithub = function ( base64Data, fileName) {
     viewMap.setUploading();
     $.ajax({
         type: 'PUT',
-        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${name}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
+        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configOb.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
         headers: {
             'Authorization': 'token ' + configObj.token,
             'Content-Type': 'application/json'
