@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File to GitHub</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <input type="text" id="tokenInput" placeholder="Enter your GitHub token">
+    <input type="text" id="ownerInput" placeholder="Enter your GitHub username">
+    <input type="text" id="repoInput" placeholder="Enter your repository name">
+    <input type="text" id="filePathInput" placeholder="Enter file path">
+    <button onclick="uploadFile()">Upload File</button>
+
+    <script>
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            const token = document.getElementById('tokenInput').value;
+            const owner = document.getElementById('ownerInput').value;
+            const repo = document.getElementById('repoInput').value;
+            const filePath = document.getElementById('filePathInput').value;
+
+            reader.onload = function(event) {
+                const fileContent = event.target.result;
+                
+                fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Upload file via API',
+                        content: btoa(fileContent)
+                    })
+                })
+                .then(response => {
+                    if (response.status === 201) {
+                        console.log('File uploaded successfully!');
+                    } else {
+                        console.error('Failed to upload file. Status code:', response.status);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
