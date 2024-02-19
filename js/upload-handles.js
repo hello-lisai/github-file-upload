@@ -71,6 +71,7 @@ let viewMap = {
             // 将预图片去掉
             this.sensingArea(null) 
             // 手动构建资源URL
+            
             let initUrl = `https://raw.githubusercontent.com/${configObj.userAndRepo}/${configObj.branch}${configObj.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`
             let cdnUrl = cdn(initUrl)
             // 远程仓库已存在重名文件！
@@ -149,11 +150,18 @@ let uploadToGithub = function ( base64Data, fileName) {
     }
     // 判断当前是否有任务
     if (viewMap.checkIsHasTask()) return;
+    //自定义
+    const currentDate = new Date();
+   const yearLastTwoDigits = String(currentDate.getFullYear()).slice(-2);
+   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+   const day = String(currentDate.getDate()).padStart(2, '0');
+
+   const 
     // 设置为正在上传
     viewMap.setUploading();
     $.ajax({
         type: 'PUT',
-        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
+        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${yearLastTwoDigits}${month}${day}/${fileName}`,
         headers: {
             'Authorization': 'token ' + configObj.token,
             'Content-Type': 'application/json'
