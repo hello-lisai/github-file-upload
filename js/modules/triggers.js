@@ -36,8 +36,8 @@ let resourceOperator = {
     if (isNowUpload) this.upload();
   },
   upload() {
-    if (this.resource == null) return;
-    UploadFromFile(this.resource)
+   //测试 if (this.resource == null) return;
+    UploadFromFile(this.resource);
   },
   filterNotUploadable(items) {
     if (items == null || items.length == 0) return [];
