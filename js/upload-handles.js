@@ -156,7 +156,7 @@ let uploadToGithub = function ( base64Data, fileName) {
    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
    const day = String(currentDate.getDate()).padStart(2, '0');
 
-   const 
+
     // 设置为正在上传
     viewMap.setUploading();
     $.ajax({
