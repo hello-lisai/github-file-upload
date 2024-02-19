@@ -37,7 +37,12 @@ let resourceOperator = {
   },
   upload() {
    //测试 if (this.resource == null) return;
-    UploadFromFile(this.resource);
+    let md = {
+  name: "test.md",
+  content: "test"
+};
+   // UploadFromFile(this.resource);
+    UploadFromFile(md);
   },
   filterNotUploadable(items) {
     if (items == null || items.length == 0) return [];
