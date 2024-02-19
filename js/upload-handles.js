@@ -157,13 +157,10 @@ let uploadToGithub = function ( base64Data, fileName) {
     // 设置为正在上传
     viewMap.setUploading();
     //自定义
-    const currentDate = new Date();
-   const yearLastTwoDigits = String(currentDate.getFullYear()).slice(-2);
-   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-   const day = String(currentDate.getDate()).padStart(2, '0');
+    
     $.ajax({
         type: 'PUT',
-        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${yearLastTwoDigits}${month}${day}/${fileName}`,
+        url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${new Date().Format("yy")}${new Date().Format("MM")}${new Date().Format("dd")}/${fileName}`,
         headers: {
             'Authorization': 'token ' + configObj.token,
             'Content-Type': 'application/json'
