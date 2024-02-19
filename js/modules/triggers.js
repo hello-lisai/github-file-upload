@@ -13,7 +13,7 @@ function targetFromEvent(e) {
 }
 // 文件挂载-上传统一处理器
 let resourceOperator = {
-  resource: null,
+ //测试 resource: null,
   show(file, isNowUpload = false, getPreUrl) {
     debugger
     if (file == null || Array.isArray(file)) return;
