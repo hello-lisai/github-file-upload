@@ -13,7 +13,7 @@ function targetFromEvent(e) {
 }
 // 文件挂载-上传统一处理器
 let resourceOperator = {
- //测试 resource: null,
+ resource: null,
   show(file, isNowUpload = false, getPreUrl) {
     debugger
     if (file == null || Array.isArray(file)) return;
@@ -36,13 +36,10 @@ let resourceOperator = {
     if (isNowUpload) this.upload();
   },
   upload() {
-   //测试 if (this.resource == null) return;
-    let md = {
-  name: "test.md",
-  content: "test"
-};
-   // UploadFromFile(this.resource);
-    UploadFromFile(md);
+   if (this.resource == null) return;
+
+    UploadFromFile(this.resource);
+  
   },
   filterNotUploadable(items) {
     if (items == null || items.length == 0) return [];
@@ -61,7 +58,7 @@ $('#myFile').on('input', (e) => resourceOperator.show(targetFromEvent(e).files[0
 // 点击图片进行上传时触发
 $("#img_pre_show").on('click', () => resourceOperator.upload())
 // 测试
-$("#up").on('click', () => resourceOperator.upload())
+//$("#up").on('click', () => resourceOperator.upload())
 
 // 【粘贴上传】
 document.addEventListener('paste', function (e) {
