@@ -2,20 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Display Namespace Data</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fetch Data</title>
 </head>
 <body>
-<div id="namespaceData"></div>
+<button onclick="fetchData()">点击这里读取数据</button>
+<button onclick="postData()">点击这里写入数据</button>
+<div id="output"></div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$.get("https://jsonbase.gd972446.workers.dev/all", function(data) {
-  // 使用 jq 库的 get 方法处理 JSON 数据
-  var namespaceData = $.get(data, "hello");
-  
-  // 在网页上展示获取到的数据
-  $("#namespaceData").text(JSON.stringify(namespaceData));
-});
+function fetchData() {
+  fetch('https://jsonbase.gd972446.workers.dev/all')
+    .then(response => response.json())
+    .then(data => {
+      console.log('读取到的所有数据：', data);
+      document.getElementById('output').innerText = '读取到的所有数据： ' + JSON.stringify(data);
+    })
+    .catch(error => {
+      console.error('读取数据时出错：', error);
+      document.getElementById('output').innerText = '读取数据时出错： ' + error;
+    });
+}
+
+function postData() {
+  fetch('https://jsonbase.gd972446.workers.dev/test1234', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ message: 'abcd' }),
+    
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log('成功写入数据：', data);
+      document.getElementById('output').innerText = '成功写入数据： ' + JSON.stringify(data);
+    })
+    .catch(error => {
+      console.error('写入数据时出错：', error);
+      document.getElementById('output').innerText = '写入数据时出错： ' + error;
+    });
+}
 </script>
 </body>
 </html>
