@@ -1,54 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload File to GitHub</title>
+<meta charset="UTF-8">
+<title>Display Namespace Data</title>
 </head>
 <body>
-    <input type="file" id="fileInput">
-    <input type="text" id="tokenInput" placeholder="Enter your GitHub token">
-    <input type="text" id="ownerInput" placeholder="Enter your GitHub username">
-    <input type="text" id="repoInput" placeholder="Enter your repository name">
-    <input type="text" id="filePathInput" placeholder="Enter file path">
-    <button onclick="uploadFile()">Upload File</button>
+<div id="namespaceData"></div>
 
-    <script>
-        function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            const token = document.getElementById('tokenInput').value;
-            const owner = document.getElementById('ownerInput').value;
-            const repo = document.getElementById('repoInput').value;
-            const filePath = document.getElementById('filePathInput').value;
-
-            reader.onload = function(event) {
-                const fileContent = event.target.result;
-                
-                fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: 'Upload file via API',
-                        content: btoa(fileContent)
-                    })
-                })
-                .then(response => {
-                    if (response.status === 201) {
-                        console.log('File uploaded successfully!');
-                    } else {
-                        console.error('Failed to upload file. Status code:', response.status);
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-            };
-
-            reader.readAsText(file);
-        }
-    </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$.get("https://jsonbase.huhuhang.workers.dev/demo_bucket/hello", function(data) {
+  // 使用 jq 库的 get 方法处理 JSON 数据
+  var namespaceData = $.get(data, "hello");
+  
+  // 在网页上展示获取到的数据
+  $("#namespaceData").text(JSON.stringify(namespaceData));
+});
+</script>
 </body>
 </html>
