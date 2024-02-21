@@ -1,73 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Markdown Editor</title>
-
-  <style>
-    body {
-      font-size: 23px;
-      line-height: 1.5;
-      margin: 0;
-      padding: 0;
-    }
-  
-    input {
-      width: 25%;
-      min-height: 10vh;
-      margin: 10px auto;
-      font-size: 16px;
-      padding: 10px;
-      box-sizing: border-box; /* 盒模型设置为边框盒 */
-      display: block;
-    }
-  
-    textarea {
-      min-height: 50vh;
-      max-height: 80vh; /* 最大高度为视口高度的80% */
-      width: 70%;
-      resize: vertical;
-      display: block;
-      overflow-y: auto; /* 在达到最大高度时显示垂直滚动条 */
-      font-size: 25px;
-      margin: 10px auto;
-    }
-  
-    button {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  
-    .warning {
-      color: red;
-      font-size: 14px;
-      margin-top: 5px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Display Namespace Data</title>
 </head>
 <body>
-  <input id="titleInput" type="text" placeholder="请输入标题">
-  <input id="tagsInput" type="text" placeholder="请输入标签，多个标签用逗号分隔">
-  <textarea id="contentInput" rows="10" cols="50" placeholder="请输入正文"></textarea>
-  <button onclick="exportMarkdown()">导出为 Markdown</button>
-  <div id="warningMessage" class="warning"></div>
+<div id="namespaceData"></div>
 
-  <script src="markdown.js"></script>
-  <script>
-    // 调整输入框高度
-    function adjustTextareaHeight() {
-      const textarea = document.getElementById('contentInput');
-      textarea.style.height = 'auto'; // 重置高度为自动，以便重新计算高度
-      textarea.style.height = `${textarea.scrollHeight}px`; // 设置高度为内容的实际高度
-    }
-
-    // 监听输入框内容变化
-    document.getElementById('contentInput').addEventListener('input', adjustTextareaHeight);
-  </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$.get("https://jsonbase.huhuhang.workers.dev/demo_bucket/hello", function(data) {
+  // 使用 jq 库的 get 方法处理 JSON 数据
+  var namespaceData = $.get(data, "hello");
+  
+  // 在网页上展示获取到的数据
+  $("#namespaceData").text(JSON.stringify(namespaceData));
+});
+</script>
 </body>
 </html>
